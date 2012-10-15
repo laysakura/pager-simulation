@@ -1,4 +1,8 @@
 from Record import Record
+import random
+import my_random
+import Config
+
 
 class Transaction(object):
     """
@@ -44,7 +48,13 @@ class Transaction(object):
 
 def gen_tx():
     tx = Transaction()
-    tx.add_insert_op(Record("abcdefg"))
+    d_length = int(
+        random.gauss(Config.record['meanLength'],
+                     Config.record['variantLength'])) # TODO: OK for Gaussian?
+    if d_length < 1:
+        d_length = 1
+    data = my_random.randstr(d_length)
+    tx.add_insert_op(Record(data))
     return tx
 
 def aggr_tx(pager, tx):

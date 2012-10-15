@@ -7,3 +7,8 @@ pager = {
 page = {
     "allocAlgorithm": "best fit", # "first fit" or "best fit"
     }
+
+record = {
+    "meanLength": 100,
+    "variantLength": 80,
+    }
