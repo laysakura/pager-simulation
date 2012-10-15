@@ -1,3 +1,5 @@
+from Record import Record
+
 class Transaction(object):
     """
     Here, `Transaction' means a bulk of requests to pager
@@ -10,10 +12,11 @@ class Transaction(object):
         @param
         record_str can be aggregated
         """
-        # Split record if it exceeds page boundary (or even space?)
+        assert(isinstance(record, Record))
+
         op = {
             'type': 'insert',
-            'data': record,
+            'record': record,
             }
         self.op_list.append(op)
 
@@ -41,7 +44,7 @@ class Transaction(object):
 
 def gen_tx():
     tx = Transaction()
-    tx.add_insert_op("abcdefg")
+    tx.add_insert_op(Record("abcdefg"))
     return tx
 
 def aggr_tx(pager, tx):
