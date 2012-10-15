@@ -12,7 +12,7 @@ if __name__ == '__main__':
     pager = Pager(db)
 
     random.seed(1)
-    n_tx = 3
+    n_tx = 3000
     for i in range(n_tx):
         tx = gen_tx()
         tx = aggr_tx(pager, tx)
